@@ -83,20 +83,19 @@ public class WatchablesCollector extends AsyncTask<String, Void, String> {
 
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray results = jsonObject.getJSONArray("keyValuePairs");
+            JSONArray features = jsonObject.getJSONArray("features");
 
-            for(int i = 0; i < results.length(); i++) {
-                JSONObject fullArtwork = results.getJSONObject(i);
-                JSONObject artworkFeatures = fullArtwork.getJSONObject("features");
+            for(int i = 0; i < features.length(); i++) {
+                JSONObject feature = features.getJSONObject(i);
 
-                String artworkId = artworkFeatures.getJSONObject("features").getString("OBJECTID");
-                String artworkTitle = artworkFeatures.getJSONObject("features").getString("AANDUIDINGOBJECT");
-                String artworkLocation = artworkFeatures.getJSONObject("features").getString("GEOGRAFISCHELIGGING");
-                String artworkArtist = artworkFeatures.getJSONObject("features").getString("KUNSTENAAR");
-                String artworkMaterial = artworkFeatures.getJSONObject("features").getString("MATERIAAL");
-                String artworkDescription = artworkFeatures.getJSONObject("features").getString("OMSCHRIJVING");
-                String artworkPlacementDate = artworkFeatures.getJSONObject("features").getString("PLAATSINGSDATUM");
-                String artworkImage = artworkFeatures.getJSONObject("features").getString("URL");
+                String artworkId = feature.getJSONObject("features").getString("OBJECTID");
+                String artworkTitle = feature.getJSONObject("features").getString("AANDUIDINGOBJECT");
+                String artworkLocation = feature.getJSONObject("features").getString("GEOGRAFISCHELIGGING");
+                String artworkArtist = feature.getJSONObject("features").getString("KUNSTENAAR");
+                String artworkMaterial = feature.getJSONObject("features").getString("MATERIAAL");
+                String artworkDescription = feature.getJSONObject("features").getString("OMSCHRIJVING");
+                String artworkPlacementDate = feature.getJSONObject("features").getString("PLAATSINGSDATUM");
+                String artworkImage = feature.getJSONObject("features").getString("URL");
 
 
                 Watchable newWatchable = new Watchable(artworkId,artworkTitle, artworkLocation, artworkArtist, artworkMaterial, artworkDescription, artworkPlacementDate, artworkImage);
