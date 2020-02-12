@@ -38,7 +38,7 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         RecyclerView mRecyclerView = findViewById(R.id.rv_watchables_list);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutMa=nager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mWatchablesList = new ArrayList<>();

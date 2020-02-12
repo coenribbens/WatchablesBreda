@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_watchables_list"/>
+
     <ImageView
         android:id="@+id/img_listrow_artwork_image"
         android:layout_width="75dp"
