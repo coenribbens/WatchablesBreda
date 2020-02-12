@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Application;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity
+        extends AppCompatActivity
+        implements WatchablesCollector.OnRandomWatchableListener, WatchablesAdapter.ListItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnGetRandomPerson;
     private ImageView imgRandomPersonImage;
 
-    private final static String mRandomUserUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json ";
+    private final static String mRandomWatchableUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json ";
     private ArrayList<Watchable> mWatchablesList;
     private RecyclerView.Adapter mAdapter;
 
@@ -38,21 +42,20 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new WatchablesAdapter(mWatchablesList, this);
         mRecyclerView.setAdapter(mAdapter);
 
-        WatchablesCollector randomUserTask = new WatchablesCollector(this);
-        WatchablesCollector.execute(mRandomUserUrl);
+        WatchablesCollector watchablesCollector = new WatchablesCollector(this);
+        new WatchablesCollector(this).execute(mRandomWatchableUrl);
+
     }
 
     @Override
-    public void onWatchableAvailabiltiy(ArrayList<Watchable> personList) {
-        Log.d(TAG, "onRandomUserAvailable was called - got " + personList.size() + " persons.");
+    public void onRandomWatchableAvailable(ArrayList<Watchable> watchablesList) {
+        Log.d(TAG, "onRandomUserAvailable was called - got " + watchablesList.size() + " persons.");
 
         mWatchablesList.clear();
-        mWatchablesList.addAll(personList);
+        mWatchablesList.addAll(watchablesList);
         mAdapter.notifyDataSetChanged();
-
     }
 
-    @Override
     public void onListItemClick(int clickedItemIndex) {
         Log.d(TAG, "onListItemClick was called - got index " + clickedItemIndex);
 
@@ -62,4 +65,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 }

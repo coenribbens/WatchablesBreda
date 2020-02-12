@@ -19,10 +19,9 @@ import java.util.Scanner;
 public class WatchablesCollector extends AsyncTask<String, Void, String> {
 
     private static final String TAG = WatchablesCollector.class.getSimpleName();
-    private OnRandomUserListener listener;
+    private OnRandomWatchableListener listener;
 
-    public WatchablesCollector(OnRandomUserListener listener) {
-
+    public WatchablesCollector(OnRandomWatchableListener listener) {
         this.listener = listener;
     }
 
@@ -105,13 +104,13 @@ public class WatchablesCollector extends AsyncTask<String, Void, String> {
 
                 mWatchablesList.add(newWatchable);
             }
-            listener.onRandomUserAvailable(mWatchablesList);
+            listener.onRandomWatchableAvailable(mWatchablesList);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-        public interface OnRandomUserListener {
-        public void onRandomUserAvailable(ArrayList<Watchable> personList);
+        public interface OnRandomWatchableListener {
+         public void onRandomWatchableAvailable(ArrayList<Watchable> watchablesList);
     }
 }

@@ -11,10 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.nio.file.Watchable;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
-public class WatchablesAdapter extends RecyclerView.Adapter<WatchablesAdapter.WatchablesViewHolder> {
+public class WatchablesAdapter
+        extends RecyclerView.Adapter<WatchablesAdapter.WatchablesViewHolder> {
 
     private static final String TAG = WatchablesAdapter.class.getSimpleName();
 
@@ -27,7 +28,7 @@ public class WatchablesAdapter extends RecyclerView.Adapter<WatchablesAdapter.Wa
     }
 
     @Override
-    public WatchablesAdapter.WatchablesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public WatchablesAdapter.WatchablesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Log.d(TAG, "onCreateViewHolder");
 
         Context context = viewGroup.getContext();
@@ -42,8 +43,14 @@ public class WatchablesAdapter extends RecyclerView.Adapter<WatchablesAdapter.Wa
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WatchablesAdapter.WatchablesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WatchablesViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder - position = " + position);
+
+        // Hier vul je het schermdeel uit de lijst met de waarden van de person.
+        WatchablesViewHolder.tvArtworkName.setText(mWatchablesList.get(position).getWatchableName());
+        Picasso.get()
+                .load(mWatchablesList.get(position).getWatchableImageUrl())
+                .into(WatchablesViewHolder.imgArtworkPicture);
 
 
     }
