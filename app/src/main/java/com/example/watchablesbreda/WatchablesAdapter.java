@@ -43,7 +43,7 @@ public class WatchablesAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WatchablesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WatchablesViewHolder WatchablesViewHolder, int position) {
         Log.d(TAG, "onBindViewHolder - position = " + position);
 
         // Hier vul je het schermdeel uit de lijst met de waarden van de person.
@@ -51,7 +51,6 @@ public class WatchablesAdapter
         Picasso.get()
                 .load(mWatchablesList.get(position).getWatchableImageUrl())
                 .into(WatchablesViewHolder.imgArtworkPicture);
-
 
     }
 

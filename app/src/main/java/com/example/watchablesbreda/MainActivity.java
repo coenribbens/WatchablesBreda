@@ -21,13 +21,16 @@ public class MainActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private TextView tvRandomPersonName;
-    private Button btnGetRandomPerson;
-    private ImageView imgRandomPersonImage;
+    private ImageView ivArtworkImage;
+    private TextView tvArtworkName;
+    private TextView tvArtworkLocation;
+    private TextView tvArtworkId;
 
     private final static String mRandomWatchableUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json ";
     private ArrayList<Watchable> mWatchablesList;
     private RecyclerView.Adapter mAdapter;
+    private WatchablesAdapter adapter;
+    private RecyclerView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

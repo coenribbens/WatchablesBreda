@@ -29,7 +29,7 @@ public class WatchableDetailActivity extends AppCompatActivity {
         tvArtworkName.setText(mWatchable.getWatchableName());
 
         Picasso.get()
-                .load(mWatchable.getWatchableURL())
+                .load(mWatchable.getWatchableImageUrl())
                 .into(imgArtworkPicture);
 
 
