@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,5 +40,26 @@ public class MainActivity extends AppCompatActivity {
 
         WatchablesCollector randomUserTask = new WatchablesCollector(this);
         WatchablesCollector.execute(mRandomUserUrl);
+    }
+
+    @Override
+    public void onWatchableAvailabiltiy(ArrayList<Watchable> personList) {
+        Log.d(TAG, "onRandomUserAvailable was called - got " + personList.size() + " persons.");
+
+        mWatchablesList.clear();
+        mWatchablesList.addAll(personList);
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        Log.d(TAG, "onListItemClick was called - got index " + clickedItemIndex);
+
+        Intent intent = new Intent(getApplicationContext(), WatchableDetailActivity.class);
+
+        intent.putExtra("WATCHABLE", mWatchablesList.get(clickedItemIndex));
+        startActivity(intent);
+
     }
 }

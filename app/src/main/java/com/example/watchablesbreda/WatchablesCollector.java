@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -79,27 +80,32 @@ public class WatchablesCollector extends AsyncTask<String, Void, String> {
         super.onPostExecute(response);
         Log.d(TAG, "onPostExecute was called");
 
-        ArrayList<Watchable> mPersonList = new ArrayList<>();
+        ArrayList<Watchable> mWatchablesList = new ArrayList<>();
 
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray results = jsonObject.getJSONArray("results");
 
             for(int i = 0; i < results.length(); i++) {
-                JSONObject user = results.getJSONObject(i);
-                JSONObject userName = user.getJSONObject("name");
+                JSONObject fullArtwork = results.getJSONObject(i);
+                JSONObject artworkFeatures = fullArtwork.getJSONObject("features");
 
-                String firstName = user.getJSONObject("name").getString("first");
-                String lastName = user.getJSONObject("name").getString("last");
-                String title = user.getJSONObject("name").getString("title");
+                String artworkId = artworkFeatures.getJSONObject("features").getString("OBJECTID");
+                String artworkTitle = artworkFeatures.getJSONObject("features").getString("AANDUIDINGOBJECT");
+                String artworkLocation = artworkFeatures.getJSONObject("features").getString("GEOGRAFISCHELIGGING");
+                String artworkArtist = artworkFeatures.getJSONObject("features").getString("KUNSTENAAR");
+                String artworkMaterial = artworkFeatures.getJSONObject("features").getString("MATERIAAL");
+                String artworkDescription = artworkFeatures.getJSONObject("features").getString("OMSCHRIJVING");
+                String artworkPlacementDate = artworkFeatures.getJSONObject("features").getString("PLAATSINGSDATUM");
+                String artworkImage = artworkFeatures.getJSONObject("features").getString("URL");
 
-                String imageUrl = user.getJSONObject("picture").getString("large");
-                Person newPerson = new Person(title, firstName, lastName);
-                newPerson.setImageUrl(imageUrl);
 
-                mPersonList.add(newPerson);
+                Watchable newWatchable = new Watchable(artworkId,artworkTitle, artworkLocation, artworkArtist, artworkMaterial, artworkDescription, artworkPlacementDate, artworkImage);
+                newWatchable.setWatchableImageUrl(artworkImage);
+
+                mWatchablesList.add(newWatchable);
             }
-            listener.onRandomUserAvailable(mPersonList);
+            listener.onRandomUserAvailable(mWatchablesList);
         } catch (JSONException e) {
             e.printStackTrace();
         }
