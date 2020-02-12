@@ -83,7 +83,7 @@ public class WatchablesCollector extends AsyncTask<String, Void, String> {
 
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray results = jsonObject.getJSONArray("results");
+            JSONArray results = jsonObject.getJSONArray("keyValuePairs");
 
             for(int i = 0; i < results.length(); i++) {
                 JSONObject fullArtwork = results.getJSONObject(i);

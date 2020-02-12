@@ -26,7 +26,7 @@ public class MainActivity
     private TextView tvArtworkLocation;
     private TextView tvArtworkId;
 
-    private final static String mRandomWatchableUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json ";
+    private final static String mRandomWatchableUrl = "https://services7.arcgis.com/21GdwfcLrnTpiju8/arcgis/rest/services/Sierende_elementen/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
     private ArrayList<Watchable> mWatchablesList;
     private RecyclerView.Adapter mAdapter;
     private WatchablesAdapter adapter;
@@ -38,7 +38,7 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         RecyclerView mRecyclerView = findViewById(R.id.rv_watchables_list);
-        RecyclerView.LayoutMa=nager mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mWatchablesList = new ArrayList<>();
