@@ -7,9 +7,11 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_watchables_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_watchables_list"/>
+        tools:layout_editor_absoluteX="-47dp"
+        tools:layout_editor_absoluteY="227dp" />
 
     <ImageView
         android:id="@+id/img_listrow_artwork_image"

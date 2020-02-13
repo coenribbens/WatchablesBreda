@@ -88,14 +88,15 @@ public class WatchablesCollector extends AsyncTask<String, Void, String> {
             for(int i = 0; i < features.length(); i++) {
                 JSONObject feature = features.getJSONObject(i);
 
-                String artworkId = feature.getJSONObject("features").getString("OBJECTID");
-                String artworkTitle = feature.getJSONObject("features").getString("AANDUIDINGOBJECT");
-                String artworkLocation = feature.getJSONObject("features").getString("GEOGRAFISCHELIGGING");
-                String artworkArtist = feature.getJSONObject("features").getString("KUNSTENAAR");
-                String artworkMaterial = feature.getJSONObject("features").getString("MATERIAAL");
-                String artworkDescription = feature.getJSONObject("features").getString("OMSCHRIJVING");
-                String artworkPlacementDate = feature.getJSONObject("features").getString("PLAATSINGSDATUM");
-                String artworkImage = feature.getJSONObject("features").getString("URL");
+                Log.d(TAG, feature.toString());
+                String artworkId = feature.getJSONObject("attributes").getString("OBJECTID");
+                String artworkTitle = feature.getJSONObject("attributes").getString("AANDUIDINGOBJECT");
+                String artworkLocation = feature.getJSONObject("attributes").getString("GEOGRAFISCHELIGGING");
+                String artworkArtist = feature.getJSONObject("attributes").getString("KUNSTENAAR");
+                String artworkMaterial = feature.getJSONObject("attributes").getString("MATERIAAL");
+                String artworkDescription = feature.getJSONObject("attributes").getString("OMSCHRIJVING");
+                String artworkPlacementDate = feature.getJSONObject("attributes").getString("PLAATSINGSDATUM");
+                String artworkImage = feature.getJSONObject("attributes").getString("URL");
 
 
                 Watchable newWatchable = new Watchable(artworkId,artworkTitle, artworkLocation, artworkArtist, artworkMaterial, artworkDescription, artworkPlacementDate, artworkImage);

@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 public class WatchableDetailActivity extends AppCompatActivity {
 
     @Override
@@ -23,10 +25,23 @@ public class WatchableDetailActivity extends AppCompatActivity {
 
         Watchable mWatchable = (Watchable) extras.getSerializable("WATCHABLE");
 
-        TextView tvArtworkName = findViewById(R.id.tv_listrow_artwork_name);
         ImageView imgArtworkPicture = findViewById(R.id.img_listrow_artwork_image);
+        TextView tvWatchableName = findViewById(R.id.tv_listrow_artwork_name);
+        TextView tvwatchAbleId = findViewById(R.id.tv_listrow_artwork_id);
+        TextView tvWatchableLocation = findViewById(R.id.tv_listrow_artwork_location);
+        TextView tvWatchableArtist = findViewById(R.id.tv_listrow_artwork_artist);
+        TextView tvWatchableMaterial = findViewById(R.id.tv_listrow_artwork_material);
+        TextView tvWatchableDescription = findViewById(R.id.tv_listrow_artwork_description);
+        TextView tvWatchablePostdate = findViewById(R.id.tv_listrow_artwork_postdate);
 
-        tvArtworkName.setText(mWatchable.getWatchableName());
+
+        tvWatchableName.setText(mWatchable.getWatchableName());
+        tvwatchAbleId.setText(mWatchable.getWatchableId());
+        tvWatchableLocation.setText(mWatchable.getWatchableLocation());
+        tvWatchableArtist.setText(mWatchable.getWatchableArtist());
+        tvWatchableMaterial.setText(mWatchable.getWatchableMaterial());
+        tvWatchableDescription.setText(mWatchable.getWatchableDescription());
+        tvWatchablePostdate.setText(mWatchable.getWatchablePostDate());
 
         Picasso.get()
                 .load(mWatchable.getWatchableImageUrl())
